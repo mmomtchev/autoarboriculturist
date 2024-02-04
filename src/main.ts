@@ -1,0 +1,34 @@
+import * as core from '@actions/core';
+import { updateMinor } from './minor';
+import { savePersistent } from './persistent';
+import { getLastPR, submitPR } from './pr';
+
+export async function minor() {
+  const status = await getLastPR().catch((e) => {
+    core.error(e);
+    return false;
+  });
+  let updates = false;
+
+  if (status) {
+    core.notice('Last PR still open, not doing anything');
+  } else {
+    const msg = await updateMinor().catch((e) => {
+      core.error(e);
+      return null;
+    });
+    if (msg) {
+      const title = core.getInput('minorTitle', { required: false });
+      await submitPR(title, msg);
+      updates = true;
+    } else {
+      core.debug('No minor updates available');
+    }
+  }
+
+  await savePersistent().catch((e) => {
+    core.error(e);
+  });
+
+  return updates;
+}

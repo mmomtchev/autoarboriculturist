@@ -1,0 +1,25 @@
+name: 'Autoarboriculturist'
+description: 'Automatically create PRs for updating npm packages'
+author: 'mmomtchev'
+inputs:
+  type:
+    description: 'Update type'
+    default: 'minor'
+  path:
+    description: 'Checkout path'
+    default: '.'
+  minorTitle:
+    description: 'Minor updates PR title'
+    default: 'Bump dependencies'
+  admin:
+    description: 'user with admin rights'
+  userName:
+    description: 'git committer name to use'
+  userEmail:
+    description: 'git committer email to use'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'arrow-up'
+  color: 'black'
