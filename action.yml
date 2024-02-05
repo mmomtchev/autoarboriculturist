@@ -17,6 +17,9 @@ inputs:
     description: 'git committer name to use'
   userEmail:
     description: 'git committer email to use'
+  token:
+    description: 'GITHUB_TOKEN or a `repo` scoped Personal Access Token (PAT)'
+    default: ${{ github.token }}
 runs:
   using: 'node20'
   main: 'dist/index.js'

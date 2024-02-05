@@ -26,8 +26,6 @@ export async function getPersistent(reinit?: boolean): Promise<Persistent> {
     frozen: []
   };
 
-  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
   try {
     await fs.promises.mkdir(persistentDir, { recursive: true });
     const git = simpleGit(persistentDir);

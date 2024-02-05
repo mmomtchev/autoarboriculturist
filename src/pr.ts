@@ -5,11 +5,8 @@ import { simpleGit } from 'simple-git';
 
 import { getPersistent } from './persistent';
 
-if (!process.env.GITHUB_TOKEN?.length)  {
-  core.error('No GitHub token found');
-}
-
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+const token = process.env.GITHUB_TOKEN ?? core.getInput('token');
+const octokit = new Octokit({ auth: token });
 
 export async function submitPR(title: string, msg: string) {
   const branch = `autoarboriculturist-${crypto.randomBytes(8).toString('hex')}`;
