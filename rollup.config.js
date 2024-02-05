@@ -27,7 +27,8 @@ module.exports = [
       {
         file: path.resolve(__dirname, 'dist', 'index.js'),
         format: 'cjs',
-        sourcemap: true
+        sourcemap: true,
+        strict: false
       },
     ]
   }

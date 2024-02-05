@@ -14,3 +14,9 @@ Some parts work sometimes
 
 ## Usage
 
+### Workflow permissions
+
+For this action to work you must explicitly allow GitHub Actions to create pull requests.
+This setting can be found in a repository's settings under Actions > General > Workflow permissions.
+
+For repositories belonging to an organization, this setting can be managed by admins in organization settings under Actions > General > Workflow permissions.
