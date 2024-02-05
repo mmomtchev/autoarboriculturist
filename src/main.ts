@@ -22,7 +22,7 @@ export async function minor() {
       await submitPR(title, msg);
       updates = true;
     } else {
-      core.debug('No minor updates available');
+      core.info('No minor updates available');
     }
   }
 
@@ -38,6 +38,6 @@ export async function main() {
 
   let updated = false;
   if (type === 'minor' || type === 'auto') {
-      updated = await minor();
+    updated = await minor();
   }
 }

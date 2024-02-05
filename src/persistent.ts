@@ -1,7 +1,6 @@
 import * as core from '@actions/core';
 import * as path from 'path';
 import * as fs from 'fs';
-import { Octokit } from '@octokit/rest';
 import { simpleGit } from 'simple-git';
 import ghpages from 'gh-pages';
 
@@ -30,17 +29,17 @@ export async function getPersistent(reinit?: boolean): Promise<Persistent> {
     await fs.promises.mkdir(persistentDir, { recursive: true });
     const git = simpleGit(persistentDir);
     await git.clone(repo, persistentDir, ['-b', branch]);
-    core.debug(`Restored persistent storage from ${repo}#${branch}`);
+    core.info(`Restored persistent storage from ${repo}#${branch}`);
   } catch (e) {
-    core.debug(`Failed to restore persistent storage from ${repo}#${branch}, ${e.message}`);
+    core.info(`Failed to restore persistent storage from ${repo}#${branch}, ${e.message}`);
     await fs.promises.mkdir(persistentDir, { recursive: true });
   }
 
   try {
     data = JSON.parse(await fs.promises.readFile(dataFile, 'utf-8'));
-    core.debug(`Loaded persistent data from ${dataFile}`);
+    core.info(`Loaded persistent data from ${dataFile}`);
   } catch (e) {
-    core.debug(`Failed to restore persistent storage from ${dataFile}, ${e.message}`);
+    core.info(`Failed to restore persistent storage from ${dataFile}, ${e.message}`);
   }
 
   return data;
@@ -51,10 +50,10 @@ export async function savePersistent() {
   data.skipped = data.skipped.filter((v, i, a) => a.indexOf(v) === i).sort();
   data.frozen = data.frozen.filter((v, i, a) => a.indexOf(v) === i).sort();
   await fs.promises.writeFile(dataFile, JSON.stringify(data));
-  core.debug(`Saved persistent data to ${dataFile}`);
+  core.info(`Saved persistent data to ${dataFile}`);
   try {
     ghpages.publish(persistentDir, { branch, repo });
-    core.debug(`Saved persistent storage to ${repo}#${branch}`);
+    core.info(`Saved persistent storage to ${repo}#${branch}`);
   } catch (e) {
     core.error(`Failed saving persistent storage to ${repo}#${branch}`);
   }

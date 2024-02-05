@@ -27,15 +27,15 @@ export async function updateMinor(data: Persistent, upgradeAll?: boolean): Promi
     const info = arb.actualTree.children.get(pkg);
 
     if (data.frozen.includes(pkg)) {
-      core.debug(`Skipping frozen package ${pkg}`);
+      core.info(`Skipping frozen package ${pkg}`);
       continue;
     }
     const pkgid = info.pkgid;
     if (data.skipped.includes(pkgid)) {
-      core.debug(`Package ${pkgid} explicitly skipped`);
+      core.info(`Package ${pkgid} explicitly skipped`);
       continue;
     }
-    core.debug(`Adding ${pkg} to the upgrade list`);
+    core.info(`Adding ${pkg} to the upgrade list`);
     names.push(pkg);
   }
 

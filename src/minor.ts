@@ -33,11 +33,11 @@ export async function updateMinor(upgradeAll?: boolean): Promise<string | null> 
     }
 
     if (data.frozen.includes(pkg)) {
-      core.debug(`Skipping frozen package ${pkg}`);
+      core.info(`Skipping frozen package ${pkg}`);
       continue;
     }
 
-    core.debug(`Adding ${pkg} to the upgrade list`);
+    core.info(`Adding ${pkg} to the upgrade list`);
     names.push(pkg);
   }
 
@@ -50,7 +50,7 @@ export async function updateMinor(upgradeAll?: boolean): Promise<string | null> 
 
       if (data.skipped.includes(`${pkg}@${to.version}`)) {
 
-        core.debug(`Package ${pkg}@${to.version} explicitly skipped`);
+        core.info(`Package ${pkg}@${to.version} explicitly skipped`);
         arb.idealTree.children.set(pkg, from);
         continue;
       }
@@ -61,7 +61,7 @@ export async function updateMinor(upgradeAll?: boolean): Promise<string | null> 
     } else if (!from) {
 
       if (data.skipped.includes(`${pkg}@${to.version}`)) {
-        core.debug(`Package ${pkg}@${to.version} explicitly skipped`);
+        core.info(`Package ${pkg}@${to.version} explicitly skipped`);
         arb.idealTree.children.delete(pkg);
         continue;
       }
