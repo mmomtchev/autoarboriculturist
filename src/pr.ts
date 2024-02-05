@@ -3,7 +3,7 @@ import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
 import { simpleGit } from 'simple-git';
 
-import { getPersistent, savePersistent } from './persistent';
+import { getPersistent } from './persistent';
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 

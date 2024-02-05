@@ -32,3 +32,12 @@ export async function minor() {
 
   return updates;
 }
+
+export async function main() {
+  const type = core.getInput('type', { required: false });
+
+  let updated = false;
+  if (type === 'minor' || type === 'auto') {
+      updated = await minor();
+  }
+}

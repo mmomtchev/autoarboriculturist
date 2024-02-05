@@ -1,5 +1,4 @@
 import * as core from '@actions/core';
-import * as cache from '@actions/cache';
 import * as path from 'path';
 import * as fs from 'fs';
 import { Octokit } from '@octokit/rest';

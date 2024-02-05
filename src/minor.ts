@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import Arborist from '@npmcli/arborist';
-import { Persistent, getPersistent } from './persistent';
+import { getPersistent } from './persistent';
 
 declare module '@npmcli/arborist' {
   export interface Node {
