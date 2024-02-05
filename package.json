@@ -4,7 +4,7 @@
   "description": "Github Action to automatically create PRs updating the npm dependencies",
   "main": "dist/index.js",
   "scripts": {
-    "prepare": "npx tsc && npx rollup -c rollup.config.js",
+    "prepare": "npx rollup -c rollup.config.js",
     "test": "npx mocha"
   },
   "repository": {

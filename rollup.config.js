@@ -18,8 +18,9 @@ module.exports = [
       json(),
       resolve({ prefereBuiltins: true }),
       replace({
-        'node-gyp/bin/node-gyp.js': '/usr/lib/node_modules/node-gyp/bin/node-gyp.js',
-        preventAssignment: true
+        "'node-gyp/bin/node-gyp.js'": "'/usr/lib/node_modules/node-gyp/bin/node-gyp.js'",
+        delimiters: ['', ''],
+        preventAssignment: false,
       })
     ],
     output: [
