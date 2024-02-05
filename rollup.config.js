@@ -4,7 +4,7 @@ const resolve = require('@rollup/plugin-node-resolve');
 const builtins = require('builtin-modules');
 const commonjs = require('@rollup/plugin-commonjs');
 const json = require('@rollup/plugin-json');
-
+const replace = require('@rollup/plugin-replace');
 
 module.exports = [
   {
@@ -17,6 +17,10 @@ module.exports = [
       }),
       json(),
       resolve({ prefereBuiltins: true }),
+      replace({
+        'node-gyp/bin/node-gyp.js': '/usr/lib/node_modules/node-gyp/bin/node-gyp.js',
+        preventAssignment: true
+      })
     ],
     output: [
       {
